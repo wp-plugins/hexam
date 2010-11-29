@@ -10,7 +10,7 @@ Provide online exams,quizzes in your wordpress web site.
 
 == Description ==
 
-By using an HEXAM PLUGIN (online examination system) you can provide online exams,quizzes in your web site. It is very easy, you can create a lot of tests in your site and place it in
+By using HEXAM PLUGIN (online examination system) you can provide online exams,quizzes in your web site. It is very easy, you can create a lot of tests in your site and place it in
 posts or pages. You can choose how many questions each quiz may contain, you can also set number of answers for each question. Users can send their results after doing test. You can also view
 how many points each user has scored and you can see and post users' ranking table in wp.
 
