@@ -4,7 +4,7 @@ Donate link: http://webania.net/hexam#donate
 Tags: test, quiz, exam, examination
 Requires at least: 3
 Tested up to: 3
-Stable tag: 1.2
+Stable tag: 1.2.1
 
 Provide online exams,quizzes in your wordpress web site.
 
