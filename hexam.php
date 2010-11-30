@@ -57,7 +57,7 @@ function hexam($content = '') {
         $replacement=$replacement.'
         <input type="radio" name="answer_'.$i.'" value="'.$j.'">'.$answers_ed[$j];
       }
-     
+     $replacement=$replacement.'<br>';
     }
     $replacement=$replacement.'
     <br><input type="submit" name="'.$word["submit"].'" value="'.$word["submit"].'"> </div></form>';
