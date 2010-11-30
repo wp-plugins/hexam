@@ -121,25 +121,25 @@ function hexam_settings() {
   $cuurl="?page=hexam/hexam.php";
   echo '<div class="wrap"><h2>Hexam settings</h2>';
 	  ?>
-<form name="hexamform1" method="post" action="<?=$cuurl;?>&do=edittest">
-<br><a href="<?=$cuurl;?>">Plugin settings home page</a><br><br>
+<form name="hexamform1" method="post" action="<?php echo $cuurl;?>&do=edittest">
+<br><a href="<?php echo $cuurl;?>">Plugin settings home page</a><br><br>
 
-<a href="<?=$cuurl;?>&do=newtest">Create new test	</a>  
-<br><? 
+<a href="<?php echo $cuurl;?>&do=newtest">Create new test	</a>  
+<br><?php 
 $wpdb->query("select testid from wp_hexam_questions group by testid ");
 $testcount=$wpdb->num_rows;
 if ($testcount>0)
   {
-    ?><br>Edit your tests <select name="edittest"> <?
+    ?><br>Edit your tests <select name="edittest"> <?php
     $testnet=$wpdb->get_results("select id,testname from wp_hexam_testnames ");
     foreach ($testnet as $tests) {
 	    echo '<option value="'.$tests->id.'">Test '.$tests->id.'-'.$tests->testname.'</option>';
       }
-   ?>  </select><input type="submit" name="Edit it" value="Edit it"><br><?
+   ?>  </select><input type="submit" name="Edit it" value="Edit it"><br><?php
  }
 ?>
 </form>
-<?
+<?php
 	  
 	  
 	  
@@ -207,14 +207,14 @@ echo '<h3>Edit part</h3>';
 	 $testtype=$testnamerow->testtype;
     ?>
     <form method="post" action="" name="hexamform">
-    Test name(or description): <input name="tdesc" type="text" value="<?=$testname;?>">  (<a href="<?=$cuurl;?>&do=deltest&edittest=<?=$newid;?>">Delete this test</a>, <a href="<?=$cuurl;?>&do=userdata&edittest=<?=$newid;?>">See user results for this test</a>)
+    Test name(or description): <input name="tdesc" type="text" value="<?php echo $testname;?>">  (<a href="<?php echo $cuurl;?>&do=deltest&edittest=<?php echo $newid;?>">Delete this test</a>, <a href="<?php echo $cuurl;?>&do=userdata&edittest=<?php echo $newid;?>">See user results for this test</a>)
     
 	<br>
-	Test type: <input name="ttype" type="text" value="<?=$testtype;?>"> (1. Type QUIZ if you want users to see their results after submitting.
+	Test type: <input name="ttype" type="text" value="<?php echo $testtype;?>"> (1. Type QUIZ if you want users to see their results after submitting.
 	2. Type TEST if you want to use this test as a competition, to hide results from users, to publish it later by yourself. In this case only logged-in users will be able to see your test.)
-	<input type="hidden" name="edittest" value="<?=$newid;?>">
+	<input type="hidden" name="edittest" value="<?php echo $newid;?>">
     <br><br>
-    <?
+    <?php
     $testsnet=$wpdb->get_results("select * from wp_hexam_questions where testid=".$newid." order by id asc");
     $i=0;
     foreach ($testsnet as $tests) {
@@ -226,11 +226,11 @@ echo '<h3>Edit part</h3>';
     }
 
     ?>
-    <input type="hidden" name="qcount" value="<?=$i;?>">
-    <input type="hidden" name="acount" value="<?=(sizeof($answers_ed)-1);?>">
+    <input type="hidden" name="qcount" value="<?php echo $i;?>">
+    <input type="hidden" name="acount" value="<?php echo (sizeof($answers_ed)-1);?>">
     <input type="submit" name="Submit this exam" value="Submit this exam">
     </form>
-    <?
+    <?php
    }
 
 }
@@ -249,7 +249,8 @@ echo '<h3>Create test</h3>';
       for ($j=1;$j<=$_POST["acount"];$j++){
         $answers=$answers."~".$_POST["answer".$i."_".$j];
       }
-      $insert=$insert.",(".$newid.",'".$wpdb->escape($_POST["question".$i])."','".$wpdb->escape($answers)."',".$wpdb->escape($_POST["correct".$i]).")";
+	  if ($_POST["correct".$i]=='') {$corr=0;}else {$corr=$_POST["correct".$i];}
+      $insert=$insert.",(".$newid.",'".$wpdb->escape($_POST["question".$i])."','".$wpdb->escape($answers)."',".$wpdb->escape($corr).")";
     }
   $insert=substr($insert,1);
   $wpdb->query("insert into wp_hexam_questions(testid,content,answers,correct)  values ".$insert);
@@ -262,7 +263,7 @@ echo '<h3>Create test</h3>';
   How many answers do you want each question to have?(max 10) <input type="text" name="acount" value="5"><br>
   <input type="submit" name="Submit" value="Go to questions page">
   </form>
-  <?
+  <?php
   }
   else {
     ?>
@@ -270,10 +271,10 @@ echo '<h3>Create test</h3>';
     Test name(or description): <input name="tdesc" type="text"> <br>
 	Test type<input name="ttype" type="text" value="QUIZ"> (1. Type QUIZ if you want users to see their results after submitting.
 	2. Type TEST if you want to use this test as a competition: to hide results from users; to publish it later by yourself. In this case only logged-in users will be able to see your test.)
-    <input name="qcount" type="hidden" value="<?=htmlentities($_POST["qcount"]);?>">
-    <input name="acount" type="hidden" value="<?=htmlentities($_POST["acount"]);?>">
+    <input name="qcount" type="hidden" value="<?php echo htmlentities($_POST["qcount"]);?>">
+    <input name="acount" type="hidden" value="<?php echo htmlentities($_POST["acount"]);?>">
     <br><br>
-    <?
+    <?php
     for ($i=1;$i<=min($_POST["qcount"],100);$i++) {
       echo 'Question '.$i.': <input type="text" size="100" name="question'.$i.'"><br>';
       for ($j=1;$j<=min($_POST["acount"],10);$j++) {
@@ -284,7 +285,7 @@ echo '<h3>Create test</h3>';
     ?>
     <input type="submit" name="Submit this exam" value="Submit this exam">
     </form>
-    <?
+    <?php
   }
 }
 
