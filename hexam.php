@@ -27,14 +27,14 @@ License: GPL2
 function hexam($content = '') {
   global $wpdb;
   global $wp_query;
-  $pattern = '/[hexam id=[0-9]*]/i';
+    
   $replacement = '';
   $newid=1;
   include(WP_PLUGIN_DIR . "/" . plugin_basename(dirname(__FILE__))."/content.php");
   $lefthex=strpos($content,"[hexam id=");
   $righthex=strpos($content,"hexam]");
   if ($lefthex!==false and $righthex!==false) {
-    $newid=substr($content,$lefthex+10,$righthex-$lefthex-10);
+    $newid=substr($content,$lefthex+10,$righthex-$lefthex-11);
   }
   $testnamerow=$wpdb->get_row("select testname,testtype from wp_hexam_testnames where id=".$newid);
   $testname=$testnamerow->testname;
@@ -51,16 +51,16 @@ function hexam($content = '') {
     $i=0;
     foreach ($testsnet as $tests) {
       $i=$i+1;
-      $replacement=$replacement.$i.') <input type="hidden" name="qid'.$i.'" value="'.$tests->id.'">'.stripslashes($tests->content).'<p>';
+      $replacement=$replacement.$i.') <input type="hidden" name="qid'.$i.'" value="'.$tests->id.'">'.stripslashes($tests->content).'<div>';
       $answers_ed=explode("~",stripslashes($tests->answers));// echo sizeof($answers_ed);
       for ($j=1;$j<=(sizeof($answers_ed)-1);$j++) {
         $replacement=$replacement.'
         <input type="radio" name="answer_'.$i.'" value="'.$j.'">'.$answers_ed[$j];
       }
-      $replacement=$replacement.'</p>';
+     
     }
     $replacement=$replacement.'
-    <input type="submit" name="'.$word["submit"].'" value="'.$word["submit"].'"> </form>';
+    <br><input type="submit" name="'.$word["submit"].'" value="'.$word["submit"].'"> </div></form>';
     }
     else {
       $question_row=$wpdb->get_results("select answers,correct from wp_hexam_questions where testid=".$newid);
@@ -94,7 +94,8 @@ function hexam($content = '') {
  else {
    $replacement='<span style="color:#FF0000"><b>'.$word["login"].'!</b></span>';
  }
-	echo preg_replace($pattern, $replacement, $content);
+    $pattern="[hexam id=".$newid." hexam]";
+	echo str_replace($pattern, $replacement, $content);
 }
 
 
