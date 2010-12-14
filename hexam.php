@@ -3,7 +3,7 @@
 Plugin Name: HEXAM - Online test system
 Plugin URI: http://www.webania.net/hexam/
 Description: It lets to developer to provide online exams,quizzes and to save user result in mysql database.
-Version: 1.2.1
+Version: 1.2.2
 Author: Elvin Haci
 Author URI: http://www.e-haci.net
 License: GPL2

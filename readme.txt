@@ -4,7 +4,7 @@ Donate link: http://webania.net/hexam#donate
 Tags: test, quiz, exam, examination
 Requires at least: 3
 Tested up to: 3
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 Provide online exams,quizzes in your wordpress web site.
 
@@ -39,6 +39,7 @@ It is very easy. When you create or edit post or page, type in there(in the fiel
 `http://webania.net/wp-content/uploads/2010/11/screenshort-2.jpg`
 
 == Changelog ==
+Shorttags completely removed.
 
 == Arbitrary section ==
 

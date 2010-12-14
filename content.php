@@ -1,4 +1,4 @@
-<?
+<?php
 $word["submit"]="Finish";
 $word["score_1"]="Your score is";
 $word["score_2"]="points";
