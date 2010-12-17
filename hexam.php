@@ -3,7 +3,7 @@
 Plugin Name: HEXAM - Online test system
 Plugin URI: http://www.webania.net/hexam/
 Description: It lets to developer to provide online exams,quizzes and to save user result in mysql database.
-Version: 1.2.2
+Version: 1.2.3
 Author: Elvin Haci
 Author URI: http://www.e-haci.net
 License: GPL2
@@ -60,7 +60,7 @@ function hexam($content = '') {
      $replacement=$replacement.'<br><br>';
     }
     $replacement=$replacement.'
-    <br><input type="submit" name="'.$word["submit"].'" value="'.$word["submit"].'"> </div></form>';
+    <br><input type="submit" name="'.$word["hsubmit"].'" value="'.$word["hsubmit"].'"> </div></form>';
     }
     else {
       $question_row=$wpdb->get_results("select answers,correct from wp_hexam_questions where testid=".$newid);
@@ -75,10 +75,10 @@ function hexam($content = '') {
         }
      }
      if ($testnamerow->testtype=='QUIZ') {
-	    $replacement= $replacement.'<b>'.$word["score_1"].' '.$point.' '.$word["score_2"].'.</b>';
+	    $replacement= $replacement.'<b>'.$word["hscore_1"].' '.$point.' '.$word["hscore_2"].'.</b>';
      }
 	 else {
-	 $replacement=$replacement.'<br><b>'.$word["recevied"].'.</b>';
+	 $replacement=$replacement.'<br><b>'.$word["hrec"].'.</b>';
 	 }
 	 if ( is_user_logged_in() ) {
 	      $wpdb->query("select ID from wp_hexam_userdata where testid=".$newid." and userid=".get_current_user_id());
@@ -86,13 +86,13 @@ function hexam($content = '') {
 	          $wpdb->query("insert into wp_hexam_userdata(userid,testid,point) values(".get_current_user_id().",".$newid.",".$point.")");
 	      } 
 		  else {
-               $replacement=$replacement.'<br><b>'.$word["but"].'.</b>';
+               $replacement=$replacement.'<br><b>'.$word["hbut"].'.</b>';
 		}		  
 	 }
 	}
  }
  else {
-   $replacement='<span style="color:#FF0000"><b>'.$word["login"].'!</b></span>';
+   $replacement='<span style="color:#FF0000"><b>'.$word["hlogin"].'!</b></span>';
  }
     $pattern="[hexam id=".$newid." hexam]";
 	return str_replace($pattern, $replacement, $content);
