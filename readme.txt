@@ -1,7 +1,7 @@
 === HEXAM ===
 Contributors: Elvin Haci
 Donate link: http://webania.net/hexam#donate
-Tags: test, quiz, exam, examination
+Tags: test, quiz, exam, examination, competition
 Requires at least: 3
 Tested up to: 3.0.3
 Stable tag: 1.2.3
