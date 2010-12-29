@@ -3,7 +3,7 @@
 Plugin Name: HEXAM - Online test system
 Plugin URI: http://www.webania.net/hexam/
 Description: It lets to developer to provide online exams,quizzes and to save user result in mysql database.
-Version: 1.2.3
+Version: 1.2.4
 Author: Elvin Haci
 Author URI: http://www.e-haci.net
 License: GPL2
@@ -51,16 +51,16 @@ function hexam($content = '') {
     $i=0;
     foreach ($testsnet as $tests) {
       $i=$i+1;
-      $replacement=$replacement.$i.') <input type="hidden" name="qid'.$i.'" value="'.$tests->id.'">'.stripslashes($tests->content).'<div>';
+      $replacement=$replacement.$i.') <input type="hidden" name="qid'.$i.'" value="'.$tests->id.'">'.stripslashes($tests->content).'<br>';
       $answers_ed=explode("~",stripslashes($tests->answers));// echo sizeof($answers_ed);
       for ($j=1;$j<=(sizeof($answers_ed)-1);$j++) {
         $replacement=$replacement.'
         <input type="radio" name="answer_'.$i.'" value="'.$j.'">'.$answers_ed[$j];
       }
-     $replacement=$replacement.'<br><br>';
+     $replacement=$replacement.'<br>';
     }
     $replacement=$replacement.'
-    <br><input type="submit" name="'.$word["hsubmit"].'" value="'.$word["hsubmit"].'"> </div></form>';
+    <br><input type="submit" name="'.$word["hsubmit"].'" value="'.$word["hsubmit"].'"> </form>';
     }
     else {
       $question_row=$wpdb->get_results("select answers,correct from wp_hexam_questions where testid=".$newid);

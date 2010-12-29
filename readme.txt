@@ -1,10 +1,10 @@
 === HEXAM ===
 Contributors: Elvin Haci
 Donate link: http://webania.net/hexam#donate
-Tags: test, quiz, exam, examination, competition
+Tags: test, quiz, exam, examination
 Requires at least: 3
 Tested up to: 3.0.3
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 
 Provide online exams,quizzes in your wordpress web site.
 
@@ -39,6 +39,8 @@ It is very easy. When you create or edit post or page, type in there(in the fiel
 `http://webania.net/wp-content/uploads/2010/11/screenshort-2.jpg`
 
 == Changelog ==
+1.2.4 A little html bug has been fixed.
+
 1.2.3 The bug about visibility of user messages(your results has been reveived, finish, scored and etc. ) has been fixed.
 
 1.2.2 Shorttags completely removed.
