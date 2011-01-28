@@ -3,7 +3,7 @@ Contributors: Elvin Haci
 Donate link: http://webania.net/hexam#donate
 Tags: test, quiz, exam, examination
 Requires at least: 3
-Tested up to: 3.0.3
+Tested up to: 3.1
 Stable tag: 1.2.4
 
 Provide online exams,quizzes in your wordpress web site.
