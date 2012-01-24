@@ -3,12 +3,12 @@
 Plugin Name: HEXAM - Online test system
 Plugin URI: http://www.webania.net/hexam/
 Description: It lets to developer to provide online exams,quizzes and to save user result in mysql database.
-Version: 1.2.4
+Version: 1.3
 Author: Elvin Haci
-Author URI: http://www.e-haci.net
+Author URI: http://www.webania.net/hexam
 License: GPL2
 */
-/*  Copyright 2010,  Elvin Haci  (email : elvinhaci@hotmail.com)
+/*  Copyright 2010-2012,  Elvin Haci  (email : elvinhaci@hotmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -23,19 +23,27 @@ License: GPL2
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
- 
-function hexam($content = '') {
+ function hexam($atts,$content = '') {
   global $wpdb;
   global $wp_query;
     
+    extract(shortcode_atts(array(
+        "id" => '1'
+    ), $atts));
+  
+  
   $replacement = '';
-  $newid=1;
+  
+  $newid=$id;
   include(WP_PLUGIN_DIR . "/" . plugin_basename(dirname(__FILE__))."/content.php");
+  /*
   $lefthex=strpos($content,"[hexam id=");
   $righthex=strpos($content,"hexam]");
   if ($lefthex!==false and $righthex!==false) {
     $newid=substr($content,$lefthex+10,$righthex-$lefthex-11);
   }
+  */
+  
   $testnamerow=$wpdb->get_row("select testname,testtype from wp_hexam_testnames where id=".$newid);
   $testname=$testnamerow->testname;
   $testtype=$testnamerow->testtype;
@@ -94,11 +102,11 @@ function hexam($content = '') {
  else {
    $replacement='<span style="color:#FF0000"><b>'.$word["hlogin"].'!</b></span>';
  }
-    $pattern="[hexam id=".$newid." hexam]";
-	return str_replace($pattern, $replacement, $content);
+    
+	return $replacement;
 }
 
-
+add_shortcode('hexam', 'hexam');
 
 
 
@@ -310,5 +318,5 @@ content.php file of the plugin contains user-interface content. You can edit or 
 
 }
 add_action('admin_menu', 'hexam_admin');
-add_filter('the_content', 'hexam');
+//add_filter('the_content', 'hexam');
 ?>

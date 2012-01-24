@@ -1,5 +1,5 @@
 <?php
-$word["hsubmit"]="Finish";
+$word["hsubmit"]="Finishs";
 $word["hscore_1"]="Your score is";
 $word["hscore_2"]="points";
 $word["hrec"]="Your results has been received";
